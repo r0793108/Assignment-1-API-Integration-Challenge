@@ -6,18 +6,18 @@ import urllib3
 #disable warnings
 urllib3.disable_warnings()
 
-#connect and authenticate to the 
+#connect and authenticate to the API
 url = "https://api.themoviedb.org/4/auth/request_token"
 payload = "{\"redirect_to\":\"http://www.themoviedb.org/\"}"
 headers = {
     'content-type': "application/json;charset=utf-8",
-    'authorization': "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiM2E2MDdjYTQ3MGU4ZTNlNzBkOTAzZjNkMWZiNGM2YiIsInN1YiI6IjYxNWVjZDBiOGUyYmE2MDAyMTRkZGQ2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hfxlEYuW-u4rl7Hky1Q90uTX2IRqiR6dd2xsMsyWgbc"
+    'authorization': "Bearer 'Your_API_READ_ACCES_TOKEN'"
     }
 response = requests.request("POST", url, data=payload, headers=headers)
 
 #declare variables
 tmdb = TMDb()
-tmdb.api_key = 'b3a607ca470e8e3e70d903f3d1fb4c6b'
+tmdb.api_key = 'Your_API_KEY'
 tmdb.language = 'en'
 tmdb.debug = True
 movie = Movie()
@@ -27,6 +27,7 @@ if response.status_code == 200:
     print("Succesful connection with API.")
     print(' ')
     
+    #ask for input
     movie_name = input("what movie do you want to search for ? ")
     search = movie.search(movie_name)
 
